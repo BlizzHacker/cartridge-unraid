@@ -43,9 +43,11 @@ then opens that path itself, so if qBittorrent says `/data/completed`, ROMarr
 has to see `/data/completed`. Where they cannot be made to agree, add a remap
 under Settings → Media Management.
 
-**The WebUI is on host port 7879.** ROMarr listens on 7878 inside the
-container, which is also Radarr's port — so the host side is offset by one to
-stay out of its way.
+**The WebUI is on port 6868.** ROMarr used to default to 7878, which is
+Radarr's port — a guaranteed collision, since anyone running ROMarr is running
+Radarr. Upstream moved to 6868 in v0.7.0, in the gap the \*arr family left
+between Bazarr (6767) and Whisparr (6969), so host and container agree again
+and there is no offset to remember.
 
 ## Adding a template
 

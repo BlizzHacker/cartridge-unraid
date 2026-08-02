@@ -16,7 +16,7 @@
   <Icon>https://raw.githubusercontent.com/BlizzHacker/cartridge-unraid/main/icon/romarr.png</Icon>
   <TemplateURL>https://raw.githubusercontent.com/BlizzHacker/cartridge-unraid/main/templates/romarr.xml</TemplateURL>
 
-  <WebUI>http://[IP]:[PORT:7878]</WebUI>
+  <WebUI>http://[IP]:[PORT:6868]</WebUI>
 
   <Category>Downloaders: MediaApp:Other</Category>
   <ExtraSearchTerms>romarr rom roms retro emulation arr romm gaseous retrom prowlarr game games cartridge</ExtraSearchTerms>
@@ -30,11 +30,9 @@ ROMarr is not tied to one library: RomM, Gaseous and Retrom are all supported an
 
 READ THIS BEFORE YOU HIT APPLY. ROMarr reads these variables ONCE, on first start, and copies them into its own settings. After that the saved settings win and editing the variables here does nothing at all. That is deliberate -- it is what lets you change things on the Settings page without the template overriding you every restart -- but it is the opposite of how most Unraid containers behave, so get the values right the first time. To change something later, use ROMarr's own Settings page, not this template.
 
-Two more things worth getting right up front:
+One more thing worth getting right up front:
 
 The "Completed downloads" path must match what your download client REPORTS, character for character. ROMarr asks the client where a finished download is and then opens that path itself, so if qBittorrent says /data/completed then ROMarr needs to see /data/completed too. Check qBittorrent's Options - Downloads "Save path", or SABnzbd's Config - Folders "Completed Download Folder", and set the container path to match. If the two genuinely cannot agree, leave it and add a remap under Settings - Media Management instead.
-
-The WebUI defaults to host port 7879, not 7878. ROMarr listens on 7878 inside the container, which is also Radarr's port -- so if you run Radarr, 7878 is already taken on your server. Leave 7879 alone unless you know it is free.
 
 Unofficial. Not affiliated with RomM, Gaseous or Retrom. A project of the Move Weight Foundation, an Oklahoma non-profit corporation with 501(c)(3) status pending.
   </Overview>
@@ -51,7 +49,7 @@ At least one download client is genuinely required, not merely recommended: a re
   <Screenshot>https://raw.githubusercontent.com/BlizzHacker/romarr/main/docs/img/libraries.png</Screenshot>
   <Screenshot>https://raw.githubusercontent.com/BlizzHacker/romarr/main/docs/img/hub-plugins.png</Screenshot>
 
-  <Config Name="WebUI" Target="7878" Default="7879" Mode="tcp" Description="Port for ROMarr's web interface. The container always listens on 7878, which is also Radarr's port -- so the host side defaults to 7879 to stay out of its way. Change the left-hand side only." Type="Port" Display="always" Required="true" Mask="false">7879</Config>
+  <Config Name="WebUI" Target="6868" Default="6868" Mode="tcp" Description="Port for ROMarr's web interface." Type="Port" Display="always" Required="true" Mask="false">6868</Config>
 
   <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/romarr" Mode="rw" Description="ROMarr's settings, history and indexer configuration. Keep this." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/romarr</Config>
 
