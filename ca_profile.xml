@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>
+Cartridge is a set of tools for people who self-host a retro game library, from the [Move Weight Foundation](https://foundation.moveweight.com), an Oklahoma non-profit corporation with 501(c)(3) status pending. Everything here is MIT licensed and unofficial &#8212; Cartridge is not affiliated with RomM, Gaseous or Retrom.
+
+The pieces are deliberately separate, and only some of them are containers:
+
+- **ROMarr** &#8212; the *arr for games. Request a title, ROMarr searches your indexers through Prowlarr, hands the winner to your download client, and files the ROM into RomM, Gaseous or Retrom. This is the app in Community Applications.
+- **ROM Hub** &#8212; ROMarr's plugin layer, a sandboxed host for metadata, artwork, firmware and content sources. A command-line tool, not a container, so it is not listed here.
+- **Cartridge for Xbox / Roku** and the **Cartridge stream server** &#8212; client apps for playing a self-hosted library on a TV.
+
+Support is through GitHub issues on the relevant repository; that is where the maintainers actually read.
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/BlizzHacker/cartridge-unraid/main/icon/cartridge.png</Icon>
+  <WebPage>https://github.com/BlizzHacker/cartridge-unraid</WebPage>
+</CommunityApplications>

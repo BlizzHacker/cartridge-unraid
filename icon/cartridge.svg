@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Cartridge">
+  <title>Cartridge</title>
+  <!-- Geometry is kept in step with make_icons.py by hand. Landscape body over
+       a narrower tab with vertical pins is what reads as a cartridge; a
+       portrait body with horizontal ridges reads as a document. -->
+  <rect x="8" y="8" width="240" height="240" rx="48" fill="#1c1c1c"/>
+  <rect x="44" y="46" width="168" height="128" rx="14" fill="#ff9f1a"/>
+  <rect x="84" y="160" width="88" height="54" rx="10" fill="#ff9f1a"/>
+  <g fill="#1c1c1c">
+    <rect x="96" y="178" width="7" height="28" rx="3"/>
+    <rect x="110" y="178" width="7" height="28" rx="3"/>
+    <rect x="124" y="178" width="7" height="28" rx="3"/>
+    <rect x="138" y="178" width="7" height="28" rx="3"/>
+    <rect x="152" y="178" width="7" height="28" rx="3"/>
+  </g>
+  <rect x="66" y="64" width="124" height="76" rx="9" fill="#1c1c1c"/>
+</svg>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>ROMarr</Name>
+  <Repository>ghcr.io/blizzhacker/romarr:latest</Repository>
+  <Registry>https://github.com/BlizzHacker/romarr/pkgs/container/romarr</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+
+  <!-- The image is python:3.13-alpine. bash is not installed, so the console
+       button must ask for sh or it opens on an error. -->
+  <Shell>sh</Shell>
+
+  <Support>https://github.com/BlizzHacker/romarr/issues</Support>
+  <Project>https://github.com/BlizzHacker/romarr</Project>
+  <ReadMe>https://raw.githubusercontent.com/BlizzHacker/romarr/main/README.md</ReadMe>
+  <Icon>https://raw.githubusercontent.com/BlizzHacker/cartridge-unraid/main/icon/romarr.png</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/BlizzHacker/cartridge-unraid/main/templates/romarr.xml</TemplateURL>
+
+  <WebUI>http://[IP]:[PORT:7878]</WebUI>
+
+  <Category>Downloaders: MediaApp:Other</Category>
+  <ExtraSearchTerms>romarr rom roms retro emulation arr romm gaseous retrom prowlarr game games cartridge</ExtraSearchTerms>
+  <License>MIT</License>
+  <MinVer>6.9</MinVer>
+
+  <Overview>
+The *arr for games. Request a title, ROMarr searches your indexers through Prowlarr, hands the winner to your download client, and files the ROM into your game library where it can actually be played. If you run Radarr for films and Sonarr for TV, this is the missing one.
+
+ROMarr is not tied to one library: RomM, Gaseous and Retrom are all supported and chosen with a single setting. There is also a "folder" mode that writes a plain directory tree laid out by platform, which is what Batocera, RetroPie, EmulationStation, ES-DE, EmuDeck, Pegasus, Lakka, muOS and LaunchBox all read.
+
+READ THIS BEFORE YOU HIT APPLY. ROMarr reads these variables ONCE, on first start, and copies them into its own settings. After that the saved settings win and editing the variables here does nothing at all. That is deliberate -- it is what lets you change things on the Settings page without the template overriding you every restart -- but it is the opposite of how most Unraid containers behave, so get the values right the first time. To change something later, use ROMarr's own Settings page, not this template.
+
+Two more things worth getting right up front:
+
+The "Completed downloads" path must match what your download client REPORTS, character for character. ROMarr asks the client where a finished download is and then opens that path itself, so if qBittorrent says /data/completed then ROMarr needs to see /data/completed too. Check qBittorrent's Options - Downloads "Save path", or SABnzbd's Config - Folders "Completed Download Folder", and set the container path to match. If the two genuinely cannot agree, leave it and add a remap under Settings - Media Management instead.
+
+The WebUI defaults to host port 7879, not 7878. ROMarr listens on 7878 inside the container, which is also Radarr's port -- so if you run Radarr, 7878 is already taken on your server. Leave 7879 alone unless you know it is free.
+
+Unofficial. Not affiliated with RomM, Gaseous or Retrom. A project of the Move Weight Foundation, an Oklahoma non-profit corporation with 501(c)(3) status pending.
+  </Overview>
+
+  <Requires>
+A running Prowlarr, at least one download client (qBittorrent, SABnzbd or NZBGet), and somewhere to put the ROMs -- either RomM, Gaseous or Retrom, or a plain folder.
+
+At least one download client is genuinely required, not merely recommended: a release found with no client that speaks its protocol is ranked and then refused.
+  </Requires>
+
+  <Screenshot>https://raw.githubusercontent.com/BlizzHacker/romarr/main/docs/img/status.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/BlizzHacker/romarr/main/docs/img/interactive-search.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/BlizzHacker/romarr/main/docs/img/library.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/BlizzHacker/romarr/main/docs/img/libraries.png</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/BlizzHacker/romarr/main/docs/img/hub-plugins.png</Screenshot>
+
+  <Config Name="WebUI" Target="7878" Default="7879" Mode="tcp" Description="Port for ROMarr's web interface. The container always listens on 7878, which is also Radarr's port -- so the host side defaults to 7879 to stay out of its way. Change the left-hand side only." Type="Port" Display="always" Required="true" Mask="false">7879</Config>
+
+  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/romarr" Mode="rw" Description="ROMarr's settings, history and indexer configuration. Keep this." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/romarr</Config>
+
+  <Config Name="ROM library" Target="/roms" Default="/mnt/user/roms" Mode="rw" Description="Where finished ROMs are filed. Point the left-hand side at the same share your library app reads. The right-hand side must match the Library path variable below." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/roms</Config>
+
+  <Config Name="Completed downloads" Target="/downloads" Default="/mnt/user/downloads" Mode="rw" Description="Your download client's completed folder. The RIGHT-hand side must be the path your client reports, character for character -- ROMarr asks the client where a finished download is and then opens that path itself. qBittorrent shows it under Options - Downloads as Save path; SABnzbd under Config - Folders as Completed Download Folder. If they cannot be made to agree, add a remap under Settings - Media Management instead." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/downloads</Config>
+
+  <Config Name="Prowlarr URL" Target="PROWLARR_URL" Default="" Description="How ROMarr finds releases. Use your server's LAN address, not localhost -- localhost inside this container is this container. Example: http://192.168.1.10:9696" Type="Variable" Display="always" Required="true" Mask="false"/>
+
+  <Config Name="Prowlarr API key" Target="PROWLARR_API_KEY" Default="" Description="Prowlarr - Settings - General - API Key." Type="Variable" Display="always" Required="true" Mask="true"/>
+
+  <Config Name="Library kind" Target="LIBRARY_KIND" Default="romm" Description="Which game library to file into: romm, gaseous, retrom, or folder. Use folder for Batocera, RetroPie, ES-DE, EmuDeck, Pegasus, Lakka, muOS or LaunchBox -- those read a plain directory tree and need no URL or account." Type="Variable" Display="always" Required="true" Mask="false">romm</Config>
+
+  <Config Name="Library URL" Target="LIBRARY_URL" Default="" Description="Your library server's address. Leave empty when Library kind is folder. Example: http://192.168.1.10:8080" Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Library path" Target="LIBRARY_PATH" Default="/roms" Description="Where ROMs are written, as seen INSIDE this container. This is the right-hand side of the ROM library mount above, not the host path. Leave it as /roms unless you changed that mount." Type="Variable" Display="always" Required="false" Mask="false">/roms</Config>
+
+  <Config Name="Library username" Target="LIBRARY_USERNAME" Default="" Description="Use a dedicated account, not your admin one. All ROMarr needs is permission to trigger a rescan. Leave empty when Library kind is folder." Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="Library password" Target="LIBRARY_PASSWORD" Default="" Description="Password for the library account. Leave empty when Library kind is folder." Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <Config Name="qBittorrent URL" Target="QBITTORRENT_URL" Default="" Description="Your qBittorrent WebUI address, for example http://192.168.1.10:8080 . At least one download client is required." Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="qBittorrent username" Target="QBITTORRENT_USER" Default="" Description="qBittorrent WebUI username." Type="Variable" Display="always" Required="false" Mask="false"/>
+
+  <Config Name="qBittorrent password" Target="QBITTORRENT_PASS" Default="" Description="qBittorrent WebUI password." Type="Variable" Display="always" Required="false" Mask="true"/>
+
+  <Config Name="SABnzbd URL" Target="SABNZBD_URL" Default="" Description="Optional usenet client. Example: http://192.168.1.10:8080" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="SABnzbd API key" Target="SABNZBD_API_KEY" Default="" Description="SABnzbd - Config - General - API Key." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+
+  <Config Name="NZBGet URL" Target="NZBGET_URL" Default="" Description="Optional usenet client. Example: http://192.168.1.10:6789" Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="NZBGet username" Target="NZBGET_USER" Default="" Description="NZBGet control username." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="NZBGet password" Target="NZBGET_PASS" Default="" Description="NZBGet control password." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+
+  <Config Name="Download category" Target="QBITTORRENT_CATEGORY" Default="romarr" Description="What ROMarr labels its own downloads with, so they stay distinguishable in a client you also use for other things. The category does not have to exist in the client beforehand." Type="Variable" Display="advanced" Required="false" Mask="false">romarr</Config>
+
+  <Config Name="PUID" Target="PUID" Default="99" Description="User ID that owns the ROMs ROMarr writes. 99 is Unraid's nobody. Match whatever your library app uses." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+
+  <Config Name="PGID" Target="PGID" Default="100" Description="Group ID that owns the ROMs ROMarr writes. 100 is Unraid's users. Match whatever your library app uses." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+
+  <Config Name="TZ" Target="TZ" Default="Etc/UTC" Description="Timezone, used for timestamps in history and logs. For example America/Chicago." Type="Variable" Display="advanced" Required="false" Mask="false">Etc/UTC</Config>
+
+  <Config Name="Log level" Target="LOG_LEVEL" Default="INFO" Description="INFO, or DEBUG when you are filing a bug report." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
+</Container>
