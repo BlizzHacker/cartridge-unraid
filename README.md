@@ -1,9 +1,17 @@
 # Cartridge templates for Unraid
 
 Unraid Community Applications templates for [Cartridge](https://github.com/BlizzHacker),
-a set of tools for self-hosting a retro game library. A project of the
-[Move Weight Foundation](https://foundation.moveweight.com), an Oklahoma
-non-profit corporation with 501(c)(3) status pending.
+a set of tools for self-hosting a retro game library.
+
+```
+Move Weight
+└─ Yarr.It ................ one front door for a self-hosted media library
+   └─ Cartridge ........... you are here
+      └─ Romarr ........... the *arr for games: request it, get it, file it
+         └─ ROM Hub ....... the plugin host underneath
+```
+
+Each layer stands alone. These templates need nothing above them.
 
 Unofficial. Not affiliated with RomM, Gaseous, Retrom or Lime Technology.
 
