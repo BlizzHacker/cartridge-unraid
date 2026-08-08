@@ -8,7 +8,7 @@ Move Weight
 └─ Yarr.It ................ one front door for a self-hosted media library
    └─ Cartridge ........... you are here
       └─ ROMarr ........... the *arr for games: request it, get it, file it
-         └─ ROM Hub ....... the plugin host underneath
+         └─ ROM Hub ....... ROMarr's plugin factory
 ```
 
 Each layer stands alone. These templates need nothing above them.
