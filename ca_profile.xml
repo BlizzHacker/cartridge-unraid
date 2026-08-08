@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CommunityApplications>
   <Profile>
-Cartridge is a set of tools for people who self-host a retro game library, from the [Move Weight Foundation](https://foundation.moveweight.com), an Oklahoma non-profit corporation with 501(c)(3) status pending. Everything here is MIT licensed and unofficial &#8212; Cartridge is not affiliated with RomM, Gaseous or Retrom.
+Cartridge is a set of tools for people who self-host a retro game library, by MoveWeight. Everything here is MIT licensed and unofficial &#8212; Cartridge is not affiliated with RomM, Gaseous or Retrom.
 
 The pieces are deliberately separate, and only some of them are containers:
 
