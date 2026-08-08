@@ -7,7 +7,7 @@ a set of tools for self-hosting a retro game library.
 Move Weight
 └─ Yarr.It ................ one front door for a self-hosted media library
    └─ Cartridge ........... you are here
-      └─ Romarr ........... the *arr for games: request it, get it, file it
+      └─ ROMarr ........... the *arr for games: request it, get it, file it
          └─ ROM Hub ....... the plugin host underneath
 ```
 
