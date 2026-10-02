@@ -27,8 +27,7 @@ Dreamcast, Saturn, Sega32X, Sega CD, N64, Xbox, Jaguar, PSP, PS1, GameCube, Gene
 5. Notifications: Enable Discord / Telegram / Gotify for download + import alerts.
 
 VERSION: v1.0.0
-
-
+COPYRIGHT: 2026 MoveWeight Studios. All rights reserved.
 </Description>
 
 <Name>ROMarr</Name>
@@ -39,7 +38,7 @@ VERSION: v1.0.0
 
 <URL>https://github.com/BlizzHacker/romarr</URL>
 
-<Variable Name="CLIENT_TYPE" Description="Select your download client type. qBittorrent, Transmission, Deluge, and rTorrent are supported." Type="dropdown" Label="Download Client Type">
+<Variable Name="CLIENT_TYPE" Description="Select your download client type. Supported: qBittorrent, Transmission, Deluge, rTorrent." Type="dropdown" Label="Download Client Type">
   <Option DoNotSave="true" Value="qBittorrent">qBittorrent</Option>
   <Option DoNotSave="true" Value="Transmission">Transmission</Option>
   <Option DoNotSave="true" Value="Deluge">Deluge</Option>
@@ -101,36 +100,27 @@ VERSION: v1.0.0
   <Repository>ghcr.io/blizzhacker/romarr:latest</Repository>
   <Live/>
   <Privileged/>
-  <Memory
-        <Minimum>512 MB</Minimum>
+  <Memory>
+    <Minimum>512 MB</Minimum>
   </Memory>
   <Support>https://github.com/BlizzHacker/romarr/issues</Support>
   <Extra>
     NETWORK_MODE=bridge
   </Extra>
-  <Mapping
-        Type=Volume
-        Host={{DOWNLOAD_PATH}}
-        ContainerPath=/downloads
-        ReadOnly=yes
-  />
-  <Mapping
-        Type=Volume
-        Host={{LIBRARY_PATH}}
-        ContainerPath=/data
-  />
-  <Env
-        ClientType={{CLIENT_TYPE}}
-        ClientIp={{CLIENT_IP}}
-        ClientPort={{CLIENT_PORT}}
-        User={{CLIENT_USER}}
-        Pass={{CLIENT_PASS}}
-        WatcherEnabled={{WATCHER_ENABLE}}
-        PUID={{PUID}}
-        PGID={{PGID}}
-        TZ={{TZ}}
-        CPUSet={{CPUSET}}
-  />
+  <Mapping Type="Volume" Host="{{DOWNLOAD_PATH}}" ContainerPath="/downloads" ReadOnly="yes"/>
+  <Mapping Type="Volume" Host="{{LIBRARY_PATH}}" ContainerPath="/data"/>
+  <Env>
+    ClientType={{CLIENT_TYPE}}
+    ClientIp={{CLIENT_IP}}
+    ClientPort={{CLIENT_PORT}}
+    User={{CLIENT_USER}}
+    Pass={{CLIENT_PASS}}
+    WatcherEnabled={{WATCHER_ENABLE}}
+    PUID={{PUID}}
+    PGID={{PGID}}
+    TZ={{TZ}}
+    CPUSet={{CPUSET}}
+  </Env>
 </Docker>
 
 </Form>
