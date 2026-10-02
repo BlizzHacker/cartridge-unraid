@@ -1,54 +1,136 @@
 <Form>
-  <Description>
+
+<Description>
 ROMARR - The Ultimate ROM Automation &amp; Management Tool
 
 A single self-contained container for managing your entire retro gaming library.
 Built on a proven, production-grade automation stack with no external dependencies.
 
-CORE FEATURES:
-&#8226;  Complete Import Pipeline
-    Automated detection and import of completed downloads from any supported client.
-    Handles both single games and full-set archives transparently.
-&#8226;  Unified Cataloguing
-    Automatic metadata, artwork, and ROM association.
-    Clean, consistent library out of the box.
-&#8226;  Multi-Indexer Search
-    Simultaneous search across all connected indexers.
-&#8226;  Direct Client Integration
-    Native support for qBittorrent, Transmission, Deluge, and rTorrent.
-&#8226;  External Platform API (v1.0)
-    Cartridge and custom frontends can submit game requests through
-    the native search + grab pipeline.
-&#8226;  Built-In Web Interface
-    Full management and browsing UI, served internally on port 8090.
-&#8226;  Zero External Services Required
-    No Radarr, No Sonarr, No manual scraping. Everything runs inside.
+<B>Core Features:</B>
+- Complete Import Pipeline: Automated detection and import of completed downloads from any supported client.
+- Unified Cataloguing: Automatic metadata, artwork, and ROM association.
+- Multi-Indexer Search: Simultaneous search across all connected indexers.
+- Direct Client Integration: Native support for qBittorrent, Transmission, Deluge, and rTorrent.
+- External Platform API (v1.0): Cartridge and custom frontends can submit game requests through the native search + grab pipeline.
+- Built-In Web Interface: Full management and browsing UI, served internally on port 8090.
+- Zero External Services Required: No Radarr, No Sonarr, No manual scraping.
 
-SUPPORTED PLATFORMS:
-MAME &#8226; FBNEO &#8226; CPS1 &#8226; CPS2 &#8226; CPS3 &#8226; GGC &#8226; GBA
-GBA SP &#8226; GB &#8226; GBC &#8226; NDS &#8226; NES &#8226; SNES &#8226; 3DO &#8226; PSX
-PS2 &#8226; WII &#8226; WiiU &#8226; Dreamcast &#8226; Saturn &#8226; Sega32X
-Sega CD &#8226; Saturn &#8226; N64 &#8226; Xbox &#8226; Jaguar &#8226; 3DO
-PSP &#8226; PS1 &#8226; PS2 &#8226; PS3 &#8226; GameCube &#8226; GBA
-SNES &#8226; N64 &#8226; Genesis/Mega Drive &#8226; SMS &#8226; Master System
+<B>Supported Platforms:</B>
+MAME, FBNEO, CPS1/2/3, GGC, GBA/SP, GB/GBC, NDS, NES, SNES, 3DO, PSX, PS2, Wii, WiiU,
+Dreamcast, Saturn, Sega32X, Sega CD, N64, Xbox, Jaguar, PSP, PS1, GameCube, Genesis, SMS, Master System
 
-CONFIGURATION GUIDE:
-1.  DOWNLOAD CLIENT:
-    qBittorrent / Transmission / Deluge / rTorrent
-    &#8226;  Host: The IP address of your download client on your network.
-    &#8226;  Port: The port your download client is listening on.
-    &#8226;  User / Password: API credentials (required for qBittorrent,
-         optional for others).
-2.  DOWNLOAD WATCHER:
-    &#8226;  Enable Watcher: Yes (recommended for automatic import).
-    &#8226;  Download Path:  /downloads (standard Unraid path).
-&#8226;  LIBRARY:
-    &#8226;  Library Path:  /movies (your Unraid data path).
-&#8226;  INDEXERS:
-    Configure any number of indexers in the web UI after first launch.
-&#8226;  NOTIFICATIONS:
-    Enable Discord / Telegram / Gotify for real-time download + import alerts.
+<B>Configuration:</B>
+1. Download Client: qBittorrent/Transmission/Deluge/rTorrent host, port, and API credentials (optional for most clients).
+2. Download Watcher: Enable for automatic import. Download path: /downloads (standard Unraid path).
+3. Library: Library path for your ROMs: /data/roms (mounted volume).
+4. Indexers: Configure any number of indexers in the web UI after first launch.
+5. Notifications: Enable Discord / Telegram / Gotify for download + import alerts.
 
 VERSION: v1.0.0
 
-&#169; 2026 MoveWeight Studios. All rights reserved.
+
+</Description>
+
+<Name>ROMarr</Name>
+
+<Icon>https://raw.githubusercontent.com/BlizzHacker/cartridge-unraid/main/icon/romarr.png</Icon>
+
+<Category>Tools::Media Management::</Category>
+
+<URL>https://github.com/BlizzHacker/romarr</URL>
+
+<Variable Name="CLIENT_TYPE" Description="Select your download client type. qBittorrent, Transmission, Deluge, and rTorrent are supported." Type="dropdown" Label="Download Client Type">
+  <Option DoNotSave="true" Value="qBittorrent">qBittorrent</Option>
+  <Option DoNotSave="true" Value="Transmission">Transmission</Option>
+  <Option DoNotSave="true" Value="Deluge">Deluge</Option>
+  <Option DoNotSave="true" Value="rTorrent">rTorrent</Option>
+</Variable>
+
+<Variable Name="CLIENT_IP" Description="The IP address or hostname of your download client on your network." Type="text" Label="Download Client Host">
+  <Validate>((?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))|(?=.{1,255}$)[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?)+</Validate>
+</Variable>
+
+<Variable Name="CLIENT_PORT" Description="The port your download client is listening on." Type="text" Label="Download Client Port">
+  <Default Value="8080" />
+  <Validate>^([1-9][0-9]{0,4}){1}$</Validate>
+</Variable>
+
+<Variable Name="CLIENT_USER" Description="API username for your download client. Leave blank for Transmission/Deluge/rTorrent." Type="text" Label="Download Client User">
+</Variable>
+
+<Variable Name="CLIENT_PASS" Description="API password for your download client. Leave blank if not using authentication." Type="text" Label="Download Client Password">
+</Variable>
+
+<Variable Name="WATCHER_ENABLE" Description="Enable automatic detection and import of completed downloads. Recommended: Yes." Type="dropdown" Label="Enable Download Watcher">
+  <Default Value="True" />
+  <Option DoNotSave="true" Value="Yes">Yes</Option>
+  <Option DoNotSave="true" Value="No">No</Option>
+</Variable>
+
+<Variable Name="DOWNLOAD_PATH" Description="The path where your download client stores completed files." Type="path" Label="Download Path">
+  <Default Value="/downloads" />
+</Variable>
+
+<Variable Name="LIBRARY_PATH" Description="The persistent path for your ROM library." Type="path" Label="Library Path">
+  <Default Value="/data/roms" />
+</Variable>
+
+<Variable Name="PUID" Description="User ID. Default 1000." Type="text" Label="PUID">
+  <Default Value="1000" />
+  <Validate>^[0-9]{1,4}$</Validate>
+</Variable>
+
+<Variable Name="PGID" Description="Group ID. Default 1000." Type="text" Label="PGID">
+  <Default Value="1000" />
+  <Validate>^[0-9]{1,4}$</Validate>
+</Variable>
+
+<Variable Name="TZ" Description="Timezone. Example: Etc/UTC" Type="text" Label="Timezone">
+  <Default Value="Etc/UTC" />
+</Variable>
+
+<Variable Name="CPUSET" Description="CPU pinning. See the Unraid documentation for details." Type="text" Label="CPU">
+</Variable>
+
+<WebUI>
+[*]:8090
+</WebUI>
+
+<Docker>
+  <Plugin>manikopoulos</Plugin>
+  <Repository>ghcr.io/blizzhacker/romarr:latest</Repository>
+  <Live/>
+  <Privileged/>
+  <Memory
+        <Minimum>512 MB</Minimum>
+  </Memory>
+  <Support>https://github.com/BlizzHacker/romarr/issues</Support>
+  <Extra>
+    NETWORK_MODE=bridge
+  </Extra>
+  <Mapping
+        Type=Volume
+        Host={{DOWNLOAD_PATH}}
+        ContainerPath=/downloads
+        ReadOnly=yes
+  />
+  <Mapping
+        Type=Volume
+        Host={{LIBRARY_PATH}}
+        ContainerPath=/data
+  />
+  <Env
+        ClientType={{CLIENT_TYPE}}
+        ClientIp={{CLIENT_IP}}
+        ClientPort={{CLIENT_PORT}}
+        User={{CLIENT_USER}}
+        Pass={{CLIENT_PASS}}
+        WatcherEnabled={{WATCHER_ENABLE}}
+        PUID={{PUID}}
+        PGID={{PGID}}
+        TZ={{TZ}}
+        CPUSet={{CPUSET}}
+  />
+</Docker>
+
+</Form>
