@@ -86,7 +86,7 @@
 86|We are resubmitting ROMarr at v1.0.0, which includes:
 87|
 88|- All features that were in the prior submission
-89|- New: External Platform API (Cartridge, SeerrNG, custom frontend integration)
+89|- New: External Platform API (Cartridge + custom frontend integration)
 90|- New: Request tracking with stable request IDs across restarts
 91|- New: Startup recovery of in-flight external requests
 92|- 2083 passing tests (v0.9.0 had ~2081)
