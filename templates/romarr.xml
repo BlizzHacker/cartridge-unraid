@@ -17,7 +17,7 @@ CORE FEATURES:
 &#8226;  Direct Client Integration
     Native support for qBittorrent, Transmission, Deluge, and rTorrent.
 &#8226;  External Platform API (v1.0)
-    Cartridge, SeerrNG, and custom frontends can submit game requests through
+    Cartridge and custom frontends can submit game requests through
     the native search + grab pipeline.
 &#8226;  Built-In Web Interface
     Full management and browsing UI, served internally on port 8090.
