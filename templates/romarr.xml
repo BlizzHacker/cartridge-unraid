@@ -3,6 +3,10 @@
   <Name>ROMarr</Name>
   <Repository>ghcr.io/blizzhacker/romarr:latest</Repository>
   <Registry>https://github.com/BlizzHacker/romarr/pkgs/container/romarr</Registry>
+  <Branch>
+    <Tag>browser</Tag>
+    <TagDescription>Browser edition: Debian with the Playwright client, for the Headless Browser download client. The default (Alpine) image cannot install Playwright. Point Browser Host at a playwright run-server.</TagDescription>
+  </Branch>
   <Network>bridge</Network>
   <Privileged>false</Privileged>
 
