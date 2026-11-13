@@ -28,6 +28,10 @@
   <MinVer>6.9</MinVer>
 
   <Overview>
+Official ROMarr package maintained by BlizzHacker / MOVE WEIGHT. Use ghcr.io/blizzhacker/romarr for builds supported by the ROMarr project.
+
+Forks and code reuse are welcome. Independent projects should use their own name, logo and visual identity. ROMarrNG is a separate fork, not an official ROMarr package, and is not affiliated with, endorsed by or supported by the ROMarr maintainers. Official sources and branding policy: https://github.com/BlizzHacker/romarr/blob/main/docs/OFFICIAL-DISTRIBUTION.md
+
 The *arr for games. Request a title, ROMarr searches your indexers through Prowlarr, hands the winner to your download client, and files the ROM into your game library where it can actually be played. If you run Radarr for films and Sonarr for TV, this is the missing one.
 
 ROMarr is not tied to one library: RomM, Gaseous and Retrom are all supported and chosen with a single setting. There is also a "folder" mode that writes a plain directory tree laid out by platform, which is what Batocera, RetroPie, EmulationStation, ES-DE, EmuDeck, Pegasus, Lakka, muOS and LaunchBox all read.
@@ -38,7 +42,7 @@ One more thing worth getting right up front:
 
 The "Completed downloads" path must match what your download client REPORTS, character for character. ROMarr asks the client where a finished download is and then opens that path itself, so if qBittorrent says /data/completed then ROMarr needs to see /data/completed too. Check qBittorrent's Options - Downloads "Save path", or SABnzbd's Config - Folders "Completed Download Folder", and set the container path to match. If the two genuinely cannot agree, leave it and add a remap under Settings - Media Management instead.
 
-Unofficial. Not affiliated with RomM, Gaseous or Retrom.
+ROMarr is maintained independently of RomM, Gaseous and Retrom.
   </Overview>
 
   <Requires>
