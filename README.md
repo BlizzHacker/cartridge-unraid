@@ -15,6 +15,12 @@ Each layer stands alone. These templates need nothing above them.
 
 Unofficial. Not affiliated with RomM, Gaseous, Retrom or Lime Technology.
 
+## Official ROMarr package and branding
+
+Install [ROMarr in Community Applications](https://ca.unraid.net/apps/romarr-04jslct0riva81?q=romarr). Its image is `ghcr.io/blizzhacker/romarr`, and support is provided at [BlizzHacker/romarr](https://github.com/BlizzHacker/romarr/issues).
+
+Forks and code reuse are welcome. Independent projects should use their own name, logo and visual identity. **ROMarrNG is a separate fork and is not affiliated with, endorsed by or supported by the ROMarr maintainers.** Crediting ROMarr as upstream is welcome. [Branding policy](BRANDING.md).
+
 ## What is listed here
 
 | Template | What it is |
