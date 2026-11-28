@@ -101,6 +101,14 @@ At least one download client is genuinely required, not merely recommended: a re
 
   <Config Name="PGID" Target="PGID" Default="100" Description="Group ID that owns the ROMs ROMarr writes. 100 is Unraid's users. Match whatever your library app uses." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
 
+  <Config Name="UMASK" Target="UMASK" Default="002" Description="Permissions for files ROMarr creates: 002 makes them 0664 and folders 0775, so your library app's group can manage them. Existing downloads are never chmod'd." Type="Variable" Display="advanced" Required="false" Mask="false">002</Config>
+
+  <Config Name="DAT folder" Target="/dats" Default="" Mode="ro" Description="Optional. A folder of No-Intro / Redump DATs (loose .dat/.xml or the ZIPs No-Intro distributes) for checksum verification. Set the DAT path variable below to /dats when you use it. DATs cost memory, roughly 3.5x their size on disk." Type="Path" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="DAT path" Target="DAT_PATH" Default="" Description="Leave empty, or /dats if you mapped the DAT folder above." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+
+  <Config Name="FUSE device (cloud mounts)" Target="/dev/fuse" Default="" Mode="" Description="Optional. Only to mount a cloud folder as a library (Settings - Cloud &amp; File Hosts). Enter /dev/fuse here AND add --cap-add SYS_ADMIN to Extra Parameters. Backups, mirroring and imports do not need it." Type="Device" Display="advanced" Required="false" Mask="false"/>
+
   <Config Name="TZ" Target="TZ" Default="Etc/UTC" Description="Timezone, used for timestamps in history and logs. For example America/Chicago." Type="Variable" Display="advanced" Required="false" Mask="false">Etc/UTC</Config>
 
   <Config Name="Log level" Target="LOG_LEVEL" Default="INFO" Description="INFO, or DEBUG when you are filing a bug report." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
